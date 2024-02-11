@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import Useonlinestatus from "../utlis/Useonlinestatus.js";
 import UserContext from "../utlis/UserContext.js";
 import { useSelector } from "react-redux";
+import { AuthContext } from "../contexts/AuthContext.js";
 
 const Header = () => {
+  const {logout, isLoggedIn} = useContext(AuthContext);
   //   //import data from useContext hook
   // // const data = useContext(UserContext)
   // // console.log(data)
@@ -33,28 +35,13 @@ const Header = () => {
   //   loginbtn === "Login" ? setloginbtn("Logout") : setloginbtn("Login");
   // };
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
- 
-  const userData = localStorage.getItem("usersignin");
-
-  useEffect(() => {
-    // Check if user data exists in local storage
-
-  console.log("userdata", userData);
-    if (userData) {
-      setIsLoggedIn(true); // User is logged in
-    } 
-    else {
-      setIsLoggedIn(false); // User is not logged in 
-    }
-  }, []);
 
 
   const handleLogout = () => {
     // Remove user data from local storage
     localStorage.removeItem("userlogindata");
     localStorage.removeItem("usersignin");
-    setIsLoggedIn(false); // Set login status to false
+    logout();
   };
 
   // const handleLogin = () => {

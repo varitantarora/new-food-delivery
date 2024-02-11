@@ -7,7 +7,7 @@ import UserContext from "./utlis/UserContext";
 import { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import Appstore from "./utlis/Appstore";
-
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
 
@@ -22,17 +22,18 @@ function App() {
 
 
   return (
-
-    <Provider store={Appstore}>
-      {/* <UserContext.Provider value={{ loggedInUser: userName, setuserName }} > */}
+    <AuthProvider>
+      <Provider store={Appstore}>
+        {/* <UserContext.Provider value={{ loggedInUser: userName, setuserName }} > */}
         <>
           <Header />
           <Outlet />
           <Footer />
         </>
 
-      {/* </UserContext.Provider> */}
-    </Provider>
+        {/* </UserContext.Provider> */}
+      </Provider>
+    </AuthProvider>
   );
 }
 

@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { json, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Login = () => {
-
+  const {login} = useContext(AuthContext);
   const navigate = useNavigate(); // Initialize useNavigate hook
 
   //variable created to store all the data inputed by the user
@@ -36,7 +37,7 @@ const Login = () => {
   const addData = (e) => {
     e.preventDefault();
     //console.log(info);
-
+    login();
     const { name, email, password } = info;
     if (name === "") {
       alert("Username is required");
